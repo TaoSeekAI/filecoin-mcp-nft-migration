@@ -88,16 +88,35 @@ Claude: ✅ 验证通过！Response: 100
 
 ## 🛠️ MCP 工具列表
 
+### 环境设置工具
 | 工具 | 功能 |
 |-----|------|
-| `verify_setup` | 验证环境配置 |
-| `nft_scan` | 扫描 NFT 合约 |
-| `get_nft_metadata` | 获取 NFT 元数据 |
-| `upload_to_filecoin` | 上传到 Filecoin |
-| `register_agent` | 注册 AI Agent |
-| `create_validation_request` | 创建验证请求 |
-| `submit_validation` | 提交验证结果 |
-| `get_validation_status` | 查询验证状态 |
+| `verify_setup` | 验证环境配置（私钥、SDK、余额、授权） |
+| `setup_approvals` | 自动设置 Filecoin 存储授权（存入 USDFC） |
+| `check_balances` | 检查钱包余额（FIL、USDFC、Payments） |
+
+### NFT 扫描工具
+| 工具 | 功能 |
+|-----|------|
+| `nft_scan` | 扫描以太坊 NFT 合约，获取 NFT 列表 |
+| `get_nft_metadata` | 获取单个 NFT 的元数据（IPFS/HTTP） |
+
+### Filecoin 上传工具
+| 工具 | 功能 |
+|-----|------|
+| `upload_to_filecoin` | 上传 NFT 元数据到 Filecoin，返回 PieceCID |
+| `test_upload` | 使用测试数据测试 Filecoin 上传功能 |
+| `batch_upload_azuki` | 批量上传 Azuki NFT 到 Filecoin |
+
+### ERC-8004 验证工具
+| 工具 | 功能 |
+|-----|------|
+| `register_agent` | 在 ERC-8004 合约上注册 AI Agent |
+| `get_agent_info` | 查询 Agent 信息（ID、Owner、状态） |
+| `create_validation_request` | 创建 ERC-8004 验证请求，记录迁移任务 |
+| `submit_validation` | 提交验证结果和证明到链上 |
+| `get_validation_status` | 查询验证请求的状态和结果 |
+| `update_agent_metadata` | 更新 Agent metadata，记录 Filecoin URI |
 
 ---
 
