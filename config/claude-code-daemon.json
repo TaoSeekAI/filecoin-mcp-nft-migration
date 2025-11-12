@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nft-migration": {
+      "url": "http://localhost:3000/message",
+      "description": "MCP Server for NFT IPFS to Filecoin migration with ERC-8004 validation (Daemon Mode)"
+    }
+  }
+}

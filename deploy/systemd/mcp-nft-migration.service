@@ -1,0 +1,57 @@
+[Unit]
+Description=MCP NFT Migration Server Daemon
+Documentation=https://github.com/TaoSeekAI/agentfilecoin
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=taoseekai
+Group=taoseekai
+WorkingDirectory=/var/tmp/vibe-kanban/worktrees/0d79-aiagent/mcp-nft-migration
+
+# Environment variables
+Environment="NODE_ENV=production"
+Environment="PORT=3000"
+Environment="HOST=localhost"
+Environment="PRIVATE_KEY=0xe4db9f0c28faad37e59e900592a45d2556e3d76137f7a45f83e5740ab35b7e9f"
+Environment="WALLET_ADDRESS=0xB34d4c8E3AcCB5FA62455228281649Be525D4e59"
+Environment="ETHEREUM_NETWORK_RPC_URL=https://eth-sepolia.public.blastapi.io"
+Environment="FILECOIN_NETWORK_RPC_URL=https://api.calibration.node.glif.io/rpc/v1"
+Environment="ETHEREUM_MAINNET_RPC_URL=https://eth-mainnet.public.blastapi.io"
+Environment="AGENT_IDENTITY_ADDRESS=0x7177a6867296406881E20d6647232314736Dd09A"
+Environment="AGENT_VALIDATION_ADDRESS=0x662b40A526cb4017d947e71eAF6753BF3eeE66d8"
+Environment="NFT_CONTRACT_ADDRESS=0xED5AF388653567Af2F388E6224dC7C4b3241C544"
+Environment="VALIDATOR_PRIVATE_KEY=0xade117fff61d9728ead68bfe8f8a619dbd85b2c9908b0760816dbc0c4f1a45dd"
+
+# Or load from env file (alternative)
+# EnvironmentFile=/var/tmp/vibe-kanban/worktrees/0d79-aiagent/mvp-demo/.env
+
+# Start command
+ExecStart=/usr/bin/node /var/tmp/vibe-kanban/worktrees/0d79-aiagent/mcp-nft-migration/build/index-daemon.js
+
+# Restart policy
+Restart=always
+RestartSec=10
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mcp-nft-migration
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/var/tmp/vibe-kanban/worktrees/0d79-aiagent/mcp-nft-migration/logs
+
+# Resource limits
+LimitNOFILE=65536
+MemoryLimit=1G
+CPUQuota=200%
+
+[Install]
+WantedBy=multi-user.target
